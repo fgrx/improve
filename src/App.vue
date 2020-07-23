@@ -23,32 +23,35 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn href="https://github.com/vuetifyjs/vuetify/releases/latest" target="_blank" text>
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      <v-btn @click="openDialogAddRessourceAction" color="primary" class="mr-2"
+        ><v-icon>mdi-plus</v-icon> Ajouter une ressource</v-btn
+      >
     </v-app-bar>
 
-    <v-content>
-      <HelloWorld />
-    </v-content>
+    <v-main>
+      <v-container>
+        <router-view></router-view>
+        <RessourceDialog />
+      </v-container>
+    </v-main>
   </v-app>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-//import HelloWorld from "./components/HelloWorld.vue";
-const HelloWorld = () => import("@/components/HelloWorld.vue");
+import { eventBus } from "@/plugins/eventBus";
+import RessourceDialog from "@/views/RessourceDialog.vue";
+import { Vue, Component } from "vue-property-decorator";
 
-export default Vue.extend({
-  name: "App",
-
+@Component({
   components: {
-    HelloWorld
-  },
-
-  data: () => ({
-    //
-  })
-});
+    RessourceDialog
+  }
+})
+export default class App extends Vue {
+  openDialogAddRessourceAction(): void {
+    eventBus.$emit("openDialogRessourceEvent", true);
+  }
+}
 </script>
+
+<style scoped></style>

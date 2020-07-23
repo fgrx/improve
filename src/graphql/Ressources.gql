@@ -1,0 +1,16 @@
+query ressources{
+    ressources{
+        id,
+        title,
+        url,
+        date_end,
+        date_start,
+        description,
+        over,
+        important,
+        tags{
+            id,
+            title
+        }
+    }
+}

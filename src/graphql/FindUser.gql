@@ -1,0 +1,4 @@
+query users($email:String){
+  users(where:{email:$email})
+  {username,email}
+}
